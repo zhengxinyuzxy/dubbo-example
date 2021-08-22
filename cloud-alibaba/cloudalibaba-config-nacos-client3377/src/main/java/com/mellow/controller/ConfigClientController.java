@@ -17,4 +17,8 @@ public class ConfigClientController {
         return configInfo;
     }
 
+    public void githubTest() {
+        System.out.println("github commit 01");
+    }
+
 }
