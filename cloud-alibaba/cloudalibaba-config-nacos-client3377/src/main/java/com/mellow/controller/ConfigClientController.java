@@ -20,6 +20,7 @@ public class ConfigClientController {
     public void githubTest() {
         System.out.println("github commit 01");
         System.out.println("gitee commit 01");
+        System.out.println("github commit 02");
     }
 
 }
