@@ -21,6 +21,7 @@ public class ConfigClientController {
         System.out.println("github commit 01");
         System.out.println("gitee commit 01");
         System.out.println("github commit 02");
+        System.out.println("github commit 03");
     }
 
 }
