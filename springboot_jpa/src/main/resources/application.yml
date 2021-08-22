@@ -1,0 +1,25 @@
+
+logging:
+  level:
+    com.mellow: debug
+spring:
+  datasource:
+    username: root
+    password: password
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    port: 6379
+    host: 127.0.0.1
+  jpa:
+    # 数据库类型
+    database: mysql
+    # 显示SQL语句
+    show-sql: true
+    # 生成表
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+server:
+  port: 18080

@@ -1,0 +1,51 @@
+server:
+  port: 18082
+spring:
+  application:
+    name: user-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+# 修改服务地址轮询策略，默认是轮询，配置之后变随机
+user-provider:
+  ribbon:
+    #轮询
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    ConnectTimeout: 1000 # 连接超时时间 没有连接上
+    ReadTimeout: 2000 # 数据读取超时时间 连接上了，连上之后开始计时，但读取数据需要花费很长时间
+    MaxAutoRetries: 1 # 最大重试次数(第一个服务)在第一次连接超时之后，在重新连接一次
+    MaxAutoRetriesNextServer: 0 # 最大重试下一个服务次数(集群的情况才会用到)
+    OkToRetryOnAllOperations: false # 是否所有操作都进行重试
+# 配置熔断策略：
+#hystrix:
+#  command:
+#    default:
+#      circuitBreaker:
+#        # 强制打开熔断器 默认false关闭的。测试配置是否生效
+#        forceOpen: false
+#        # 触发熔断错误比例阈值，默认值50%
+#        errorThresholdPercentage: 50
+#        # 熔断后休眠时长，默认值5秒
+#        sleepWindowInMilliseconds: 10000
+#        # 熔断触发最小请求次数，默认值是20
+#        requestVolumeThreshold: 10
+#      execution:
+#        isolation:
+#          thread:
+#            # 熔断降级超时设置，默认为2秒
+#            timeoutInMilliseconds: 2000
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+      min-request-size: 2048 # 设置触发压缩的大小下限
+      #以上数据类型，压缩大小下限均为默认值
+    response:
+      enabled: true
+logging:
+  level:
+    com.mellow: debug

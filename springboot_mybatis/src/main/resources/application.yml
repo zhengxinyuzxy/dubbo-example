@@ -1,0 +1,14 @@
+mybatis:
+  type-aliases-package: com.mellow.pojo # 指定mybatis别名包
+  mapper-locations: classpath:com/mellow/dao/*.xml # 指定xml映射文件路径
+logging:
+  level:
+    com.mellow: debug # 配置日志
+spring:
+  datasource:
+    username: root
+    password: password
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 18081

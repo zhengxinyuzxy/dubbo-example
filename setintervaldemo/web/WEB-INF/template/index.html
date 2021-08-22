@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index-setinterval</title>
+    <script src="../../script/vue.min.js"></script>
+</head>
+<body>
+<div id="demo01">
+    <input type="button" value="跑起来" @click="lang"/>
+    <input type="button" value="暂停" @click="stop"/>
+    <h2>{{mes}}</h2>
+</div>
+<script type="text/javascript">
+    var vue = new Vue({
+            el: "#demo01",
+            data: {
+                mes: "旅游第二天，跑马灯实验",
+                /*intervalId: null*/
+                intervalId: null
+            },
+            methods: {
+                lang: function () {
+                    if (this.intervalId != null) {
+                        return
+                    };
+                    this.intervalId = setInterval(() => {
+                        var start = this.mes.substring(0, 1)
+                        var end = this.mes.substring(1)
+                        this.mes = end + start
+                        console.log(this.mes)
+                    }, 300);
+                },
+                stop: function () {
+                    cleanInterval(this.intervalId)
+                    this.intervalId=null
+                }
+            }
+
+        })
+    ;
+</script>
+</body>
+</html>

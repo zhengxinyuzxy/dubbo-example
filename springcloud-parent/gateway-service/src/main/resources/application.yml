@@ -1,0 +1,30 @@
+server:
+  port: 18084
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # 唯一标识，自定义
+        - id: user-service-routes
+        # 路由的服务地址
+        # uri: http://localhost:18081
+          uri: lb://user-provider
+        # 断言
+          predicates:
+          # - Path=/provider/**
+            - Path=/**
+          filters:
+            # 添加前缀
+            # - PrefixPath=/provider
+            # 去掉前缀
+            - StripPrefix=1
+            - MyParam
+      default-filters:
+        # 往响应过滤器中加入信息
+        - AddResponseHeader=X-Response-Default-MyName,smile
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
